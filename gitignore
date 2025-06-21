@@ -1,0 +1,10 @@
+# Environment files
+.env
+*.env
+
+# Virtual environment
+venv/
+
+# macOS specific files
+._*
+.DS_Store

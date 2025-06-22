@@ -17,3 +17,6 @@ kaggle.json
 
 # Ignore the entire raw_data directory and its contents
 data/raw_data/**
+
+# Ignore Hugging Face pre-trained models
+model/raw_model/

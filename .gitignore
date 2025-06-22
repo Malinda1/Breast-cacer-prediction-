@@ -8,3 +8,9 @@ venv/
 # macOS specific files
 ._*
 .DS_Store
+
+
+# Kaggle API credentials
+kaggle.json
+*.json
+/.kaggle/

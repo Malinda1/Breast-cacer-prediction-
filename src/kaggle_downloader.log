@@ -12,3 +12,8 @@
 2025-06-22 09:06:14,744 - INFO - Downloading dataset: olegbaryshnikov/rsna-roi-512x512-pngs
 2025-06-22 09:11:14,958 - INFO - Initializing Kaggle API connection...
 2025-06-22 09:11:14,960 - INFO - Downloading dataset: olegbaryshnikov/rsna-roi-512x512-pngs
+2025-06-22 10:38:13,530 - INFO - Successfully downloaded dataset to /Volumes/KODAK/folder 02/Brest_cancer_prediction/data/raw_data/olegbaryshnikov_rsna-roi-512x512-pngs.zip
+2025-06-22 10:38:13,535 - INFO - Extracting olegbaryshnikov_rsna-roi-512x512-pngs.zip...
+2025-06-22 10:55:36,087 - INFO - Extraction complete to /Volumes/KODAK/folder 02/Brest_cancer_prediction/data/raw_data
+2025-06-22 10:55:36,101 - INFO - Deleted zip file: olegbaryshnikov_rsna-roi-512x512-pngs.zip
+2025-06-22 10:55:36,203 - INFO - Dataset download and processing completed successfully!

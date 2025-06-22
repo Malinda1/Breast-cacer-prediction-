@@ -51,8 +51,14 @@ shap>=0.40.0,<1.0.0
 lime>=0.2.0,<1.0.0
 
 # Optional: For hyperparameter tuning
-optuna>=2.10.0,<3.0.0
+optuna>=2.10.0,<4.0.0
 
 # Optional: For model tracking
-mlflow>=1.24.0,<2.0.0
+mlflow>=1.24.0,<3.0.0
 wandb>=0.12.0,<1.0.0
+
+# Web Scraping and Parsing
+requests>=2.27.0,<3.0.0
+beautifulsoup4>=4.11.0,<5.0.0
+selenium>=4.1.0,<5.0.0
+lxml>=4.8.0,<5.0.0

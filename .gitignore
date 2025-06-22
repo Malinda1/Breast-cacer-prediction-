@@ -14,3 +14,6 @@ venv/
 kaggle.json
 *.json
 /.kaggle/
+
+# Ignore the entire raw_data directory and its contents
+data/raw_data/**

@@ -1,0 +1,32 @@
+2025-06-24 13:59:34,037 - INFO - Starting image processing...
+2025-06-24 13:59:34,037 - INFO - Dry run mode: True
+2025-06-24 13:59:34,037 - INFO - Loading unrecognized images from: /Volumes/KODAK/folder 02/Brest_cancer_prediction/data/unrecognized_images.csv
+2025-06-24 13:59:34,052 - INFO - Loaded 89 unrecognized image identifiers
+2025-06-24 13:59:34,053 - INFO - Sample identifiers: ['13095_486827821', '33581_1398764972', '33581_1335115222', '36590_83218100', '52509_910813610']
+2025-06-24 13:59:49,489 - INFO - Found 109234 image files in the directory
+2025-06-24 13:59:49,534 - WARNING - 89 unrecognized image IDs were not found in the directory
+2025-06-24 13:59:49,534 - INFO - ==================================================
+2025-06-24 13:59:49,535 - INFO - PROCESSING COMPLETED
+2025-06-24 13:59:49,535 - INFO - ==================================================
+2025-06-24 13:59:49,536 - INFO - Total unrecognized IDs in CSV: 89
+2025-06-24 13:59:49,536 - INFO - Images found for removal: 0
+2025-06-24 13:59:49,536 - INFO - Images that WOULD be removed: 0
+2025-06-24 13:59:49,537 - INFO - Unrecognized IDs not found: 89
+2025-06-24 13:59:49,537 - INFO - Errors encountered: 0
+2025-06-24 13:59:49,537 - INFO - ==================================================
+2025-06-24 14:01:03,279 - INFO - Starting image processing...
+2025-06-24 14:01:03,279 - INFO - Dry run mode: True
+2025-06-24 14:01:03,280 - INFO - Loading unrecognized images from: /Volumes/KODAK/folder 02/Brest_cancer_prediction/data/unrecognized_images.csv
+2025-06-24 14:01:03,297 - INFO - Loaded 89 unrecognized image identifiers
+2025-06-24 14:01:03,297 - INFO - Sample identifiers: ['13095_486827821', '33581_1398764972', '33581_1335115222', '36590_83218100', '52509_910813610']
+2025-06-24 14:01:34,481 - INFO - Found 109234 image files in the directory
+2025-06-24 14:01:34,526 - WARNING - 89 unrecognized image IDs were not found in the directory
+2025-06-24 14:01:34,526 - INFO - ==================================================
+2025-06-24 14:01:34,527 - INFO - PROCESSING COMPLETED
+2025-06-24 14:01:34,527 - INFO - ==================================================
+2025-06-24 14:01:34,527 - INFO - Total unrecognized IDs in CSV: 89
+2025-06-24 14:01:34,527 - INFO - Images found for removal: 0
+2025-06-24 14:01:34,527 - INFO - Images that WOULD be removed: 0
+2025-06-24 14:01:34,527 - INFO - Unrecognized IDs not found: 89
+2025-06-24 14:01:34,528 - INFO - Errors encountered: 0
+2025-06-24 14:01:34,528 - INFO - ==================================================

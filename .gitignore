@@ -20,3 +20,6 @@ data/raw_data/**
 
 # Ignore Hugging Face pre-trained models
 model/raw_model/
+
+# Ignore entire preprocessed_data directory
+data/preprocessed_data/

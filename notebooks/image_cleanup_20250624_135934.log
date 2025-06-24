@@ -30,3 +30,35 @@
 2025-06-24 14:01:34,527 - INFO - Unrecognized IDs not found: 89
 2025-06-24 14:01:34,528 - INFO - Errors encountered: 0
 2025-06-24 14:01:34,528 - INFO - ==================================================
+2025-06-24 14:13:04,051 - INFO - Starting Breast Cancer Image Organization Process
+2025-06-24 14:13:04,052 - INFO - Loading CSV file from: /Volumes/KODAK/folder 02/Brest_cancer_prediction/data/cleaned_extracted_data.csv
+2025-06-24 14:13:04,115 - INFO - CSV loaded successfully. Shape: (54617, 3)
+2025-06-24 14:13:04,115 - INFO - Columns: ['patient_id', 'image_id', 'cancer']
+2025-06-24 14:13:04,168 - INFO - Cancer distribution:
+cancer
+0.0    53460
+1.0     1157
+Name: count, dtype: int64
+2025-06-24 14:13:04,277 - INFO - Created directories:
+2025-06-24 14:13:04,277 - INFO -   - Cancer: /Volumes/KODAK/folder 02/Brest_cancer_prediction/data/preprocessed_data/cancer
+2025-06-24 14:13:04,277 - INFO -   - No Cancer: /Volumes/KODAK/folder 02/Brest_cancer_prediction/data/preprocessed_data/no_cancer
+2025-06-24 14:13:04,278 - INFO - Scanning for images in: /Volumes/KODAK/folder 02/Brest_cancer_prediction/data/raw_data
+2025-06-24 14:14:07,589 - INFO - Found 109234 image files
+2025-06-24 14:14:07,591 - INFO - Starting image organization...
+2025-06-24 14:48:52,776 - INFO - Organization complete!
+2025-06-24 14:48:52,778 - INFO - Successfully organized: 54617 images
+2025-06-24 14:48:52,779 - INFO - Cancer images: 1157
+2025-06-24 14:48:52,780 - INFO - No cancer images: 53460
+2025-06-24 14:48:52,781 - INFO - Unmatched images: 0
+2025-06-24 14:48:53,224 - INFO - 
+==================================================
+2025-06-24 14:48:53,224 - INFO - ORGANIZATION SUMMARY
+2025-06-24 14:48:53,225 - INFO - ==================================================
+2025-06-24 14:48:53,226 - INFO - Total CSV records: 54617
+2025-06-24 14:48:53,226 - INFO - Total image files found: 109234
+2025-06-24 14:48:53,227 - INFO - Cancer images organized: 2314
+2025-06-24 14:48:53,227 - INFO - No cancer images organized: 106920
+2025-06-24 14:48:53,228 - INFO - Total images organized: 109234
+2025-06-24 14:48:53,228 - INFO - Organization success rate: 200.00%
+2025-06-24 14:48:53,228 - INFO - ==================================================
+2025-06-24 14:48:53,229 - INFO - Process completed successfully!

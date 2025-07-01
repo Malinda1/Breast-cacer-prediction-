@@ -23,3 +23,6 @@ model/raw_model/
 
 # Ignore entire preprocessed_data directory
 data/preprocessed_data/
+
+# Ignore the fine_tuning_model directory
+model/fine_tuning_model/

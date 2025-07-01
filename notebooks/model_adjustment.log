@@ -1,0 +1,73 @@
+2025-07-01 08:47:16,605 - INFO - 🚀 Starting ViT Model Adjustment for Breast Cancer Detection
+2025-07-01 08:47:16,606 - INFO - Configuration initialized for breast_cancer_detection
+2025-07-01 08:47:16,607 - INFO - Target classes: 2 (normal, cancer)
+2025-07-01 08:47:16,607 - INFO - Device: cpu
+2025-07-01 08:47:16,607 - INFO - Starting ViT model adjustment process...
+2025-07-01 08:47:16,628 - INFO - Loading original ViT model and processor...
+2025-07-01 08:47:16,637 - INFO - Loading from local path: /Volumes/KODAK/folder 02/Brest_cancer_prediction/model/raw_model
+2025-07-01 08:47:16,884 - INFO - Original model loaded successfully
+2025-07-01 08:47:16,884 - INFO - Original number of classes: 1000
+2025-07-01 08:47:16,885 - INFO - Model architecture: ['ViTForImageClassification']
+2025-07-01 08:47:16,886 - INFO - 
+==================================================
+2025-07-01 08:47:16,886 - INFO - Original Model Information
+2025-07-01 08:47:16,887 - INFO - ==================================================
+2025-07-01 08:47:16,888 - INFO - Architecture: ['ViTForImageClassification']
+2025-07-01 08:47:16,888 - INFO - Number of labels: 1000
+2025-07-01 08:47:16,889 - INFO - Hidden size: 768
+2025-07-01 08:47:16,889 - INFO - Number of attention heads: 12
+2025-07-01 08:47:16,890 - INFO - Number of layers: 12
+2025-07-01 08:47:16,890 - INFO - Image size: 224
+2025-07-01 08:47:16,891 - INFO - Patch size: 16
+2025-07-01 08:47:16,891 - INFO - Classifier input features: 768
+2025-07-01 08:47:16,892 - INFO - Classifier output features: 1000
+2025-07-01 08:47:16,893 - INFO - Total parameters: 86,567,656
+2025-07-01 08:47:16,893 - INFO - Trainable parameters: 86,567,656
+2025-07-01 08:47:16,893 - INFO - ==================================================
+
+2025-07-01 08:47:16,894 - INFO - Adjusting model architecture for breast cancer classification...
+2025-07-01 08:47:16,899 - INFO - Creating adjusted model with new configuration...
+2025-07-01 08:47:18,424 - INFO - Copying pre-trained weights...
+2025-07-01 08:47:20,193 - INFO - Copied weights for 198 layers
+2025-07-01 08:47:20,194 - INFO - Skipped 2 layers:
+2025-07-01 08:47:20,194 - INFO -   - classifier.weight (classifier layer)
+2025-07-01 08:47:20,195 - INFO -   - classifier.bias (classifier layer)
+2025-07-01 08:47:20,196 - INFO - Initializing new classifier layer...
+2025-07-01 08:47:20,197 - INFO - Classifier initialized - Input: 768, Output: 2
+2025-07-01 08:47:20,197 - INFO - Model architecture adjusted successfully!
+2025-07-01 08:47:20,198 - INFO - 
+==================================================
+2025-07-01 08:47:20,199 - INFO - Adjusted Model Information
+2025-07-01 08:47:20,199 - INFO - ==================================================
+2025-07-01 08:47:20,200 - INFO - Architecture: ['ViTForImageClassification']
+2025-07-01 08:47:20,200 - INFO - Number of labels: 2
+2025-07-01 08:47:20,201 - INFO - Hidden size: 768
+2025-07-01 08:47:20,201 - INFO - Number of attention heads: 12
+2025-07-01 08:47:20,201 - INFO - Number of layers: 12
+2025-07-01 08:47:20,201 - INFO - Image size: 224
+2025-07-01 08:47:20,202 - INFO - Patch size: 16
+2025-07-01 08:47:20,202 - INFO - Classifier input features: 768
+2025-07-01 08:47:20,202 - INFO - Classifier output features: 2
+2025-07-01 08:47:20,203 - INFO - Total parameters: 85,800,194
+2025-07-01 08:47:20,203 - INFO - Trainable parameters: 85,800,194
+2025-07-01 08:47:20,203 - INFO - ==================================================
+
+2025-07-01 08:47:20,204 - INFO - Validating adjusted model...
+2025-07-01 08:47:20,322 - INFO - ✓ Model validation successful! Output shape: torch.Size([1, 2])
+2025-07-01 08:47:20,326 - INFO - ✓ Sample output probabilities: [0.18248295783996582, 0.8175170421600342]
+2025-07-01 08:47:20,354 - INFO - Created output directory: /Volumes/KODAK/folder 02/Brest_cancer_prediction/model/fine_tuning_model/breast_cancer_vit_adjusted
+2025-07-01 08:47:20,354 - INFO - Saving adjusted model to: /Volumes/KODAK/folder 02/Brest_cancer_prediction/model/fine_tuning_model/breast_cancer_vit_adjusted
+2025-07-01 08:47:21,955 - INFO - ✓ Model saved successfully
+2025-07-01 08:47:22,000 - INFO - ✓ Processor saved successfully
+2025-07-01 08:47:22,024 - INFO - ✓ Metadata saved to: /Volumes/KODAK/folder 02/Brest_cancer_prediction/model/fine_tuning_model/breast_cancer_vit_adjusted/adjustment_metadata.json
+2025-07-01 08:47:22,056 - INFO - ✓ README created: /Volumes/KODAK/folder 02/Brest_cancer_prediction/model/fine_tuning_model/breast_cancer_vit_adjusted/README.md
+2025-07-01 08:47:22,057 - INFO - Verifying saved model...
+2025-07-01 08:47:23,654 - INFO - ✅ Saved model verification successful!
+2025-07-01 08:47:23,656 - INFO - ✅ Model adjustment completed successfully!
+2025-07-01 08:47:23,657 - INFO - Adjusted model saved to: /Volumes/KODAK/folder 02/Brest_cancer_prediction/model/fine_tuning_model/breast_cancer_vit_adjusted
+2025-07-01 08:47:23,657 - INFO - 🎉 Process completed successfully!
+2025-07-01 08:47:23,657 - INFO - 📁 Adjusted model location: /Volumes/KODAK/folder 02/Brest_cancer_prediction/model/fine_tuning_model/breast_cancer_vit_adjusted
+2025-07-01 08:47:23,658 - INFO - 📋 Next steps:
+2025-07-01 08:47:23,658 - INFO -    1. Use this adjusted model for fine-tuning on your dataset
+2025-07-01 08:47:23,658 - INFO -    2. The model is ready for training with your breast cancer data
+2025-07-01 08:47:23,659 - INFO -    3. Check the README.md file for usage instructions

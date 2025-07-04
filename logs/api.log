@@ -1,0 +1,169 @@
+2025-07-04 09:13:42,478 - app.main - INFO - Starting up FastAPI server...
+2025-07-04 09:13:42,491 - app.main - ERROR - Error loading model: Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL transformers.models.vit.modeling_vit.ViTForImageClassification was not an allowed global by default. Please use `torch.serialization.add_safe_globals([transformers.models.vit.modeling_vit.ViTForImageClassification])` or the `torch.serialization.safe_globals([transformers.models.vit.modeling_vit.ViTForImageClassification])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+2025-07-04 09:13:42,492 - app.main - ERROR - Failed to load model during startup
+2025-07-04 09:18:31,906 - app.main - INFO - Starting up FastAPI server...
+2025-07-04 09:18:31,925 - app.main - INFO - Loading model from /Volumes/KODAK/folder 02/Brest_cancer_prediction/model/fine_tuning_model/breast_cancer_vit_fine_tuned_20250701_100324/best_model.pth
+2025-07-04 09:18:31,926 - app.main - WARNING - Failed to load with weights_only=False: cannot access local variable 'torch' where it is not associated with a value
+2025-07-04 09:18:32,050 - app.main - ERROR - Error loading model: 'str' object has no attribute '__module__'
+2025-07-04 09:18:32,050 - app.main - ERROR - Error type: <class 'AttributeError'>
+2025-07-04 09:18:32,050 - app.main - ERROR - Failed to load model during startup
+2025-07-04 09:23:04,822 - app.main - INFO - Starting up FastAPI server...
+2025-07-04 09:23:04,845 - app.main - INFO - Loading model from /Volumes/KODAK/folder 02/Brest_cancer_prediction/model/fine_tuning_model/breast_cancer_vit_fine_tuned_20250701_100324/best_model.pth
+2025-07-04 09:25:52,305 - app.main - INFO - Successfully loaded model with weights_only=False
+2025-07-04 09:25:52,306 - app.main - INFO - Checkpoint keys: Not a dict
+2025-07-04 09:25:52,306 - app.main - INFO - Detected torchvision ViT model
+2025-07-04 09:25:52,732 - app.main - ERROR - Failed to load state dict: Expected state_dict to be dict-like, got <class 'transformers.models.vit.modeling_vit.ViTForImageClassification'>.
+2025-07-04 09:25:52,732 - app.main - ERROR - Error loading torchvision model: Expected state_dict to be dict-like, got <class 'transformers.models.vit.modeling_vit.ViTForImageClassification'>.
+2025-07-04 09:25:52,732 - app.main - ERROR - Error loading model: Expected state_dict to be dict-like, got <class 'transformers.models.vit.modeling_vit.ViTForImageClassification'>.
+2025-07-04 09:25:52,732 - app.main - ERROR - Error type: TypeError
+2025-07-04 09:25:52,742 - app.main - ERROR - Full traceback: Traceback (most recent call last):
+  File "/Volumes/KODAK/folder 02/Brest_cancer_prediction/app/main.py", line 290, in _load_torchvision_model
+    model.load_state_dict(state_dict, strict=False)
+  File "/Volumes/KODAK/folder 02/Brest_cancer_prediction/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 2525, in load_state_dict
+    raise TypeError(
+TypeError: Expected state_dict to be dict-like, got <class 'transformers.models.vit.modeling_vit.ViTForImageClassification'>.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/KODAK/folder 02/Brest_cancer_prediction/app/main.py", line 133, in load_model
+    self.model = self._load_torchvision_model(checkpoint)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/KODAK/folder 02/Brest_cancer_prediction/app/main.py", line 295, in _load_torchvision_model
+    missing_keys, unexpected_keys = model.load_state_dict(state_dict, strict=False)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/KODAK/folder 02/Brest_cancer_prediction/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 2525, in load_state_dict
+    raise TypeError(
+TypeError: Expected state_dict to be dict-like, got <class 'transformers.models.vit.modeling_vit.ViTForImageClassification'>.
+
+2025-07-04 09:25:52,766 - app.main - ERROR - Failed to load model during startup
+2025-07-04 09:30:43,702 - app.main - INFO - Starting up FastAPI server...
+2025-07-04 09:30:43,726 - app.main - INFO - Loading model from /Volumes/KODAK/folder 02/Brest_cancer_prediction/model/fine_tuning_model/breast_cancer_vit_fine_tuned_20250701_100324/best_model.pth
+2025-07-04 09:33:53,798 - app.main - INFO - Successfully loaded checkpoint
+2025-07-04 09:33:53,799 - app.main - INFO - Checkpoint type: ViTForImageClassification
+2025-07-04 09:33:53,799 - app.main - INFO - Detected direct model object
+2025-07-04 09:33:53,808 - app.main - INFO - Model loaded successfully and moved to cpu
+2025-07-04 09:33:53,808 - app.main - INFO - Model type: ViTForImageClassification
+2025-07-04 09:33:53,808 - app.main - INFO - FastAPI server started successfully
+2025-07-04 09:38:17,481 - app.main - INFO - Processing prediction 6bdeec12-21b9-4e0a-b53a-5df81201d40d for file cancer_082.png
+2025-07-04 09:38:18,365 - app.main - INFO - Prediction 6bdeec12-21b9-4e0a-b53a-5df81201d40d completed: Normal (confidence: 99.95%)
+2025-07-04 09:39:11,267 - app.main - INFO - Processing prediction d312ea20-4395-4849-8236-95ad3f628c42 for file cancer_161.png
+2025-07-04 09:39:11,539 - app.main - INFO - Prediction d312ea20-4395-4849-8236-95ad3f628c42 completed: Normal (confidence: 100.00%)
+2025-07-04 09:40:29,093 - app.main - INFO - Processing prediction 2ae3deb0-a34f-48de-8e4e-7d9f660879b8 for file normal_062.png
+2025-07-04 09:40:29,267 - app.main - INFO - Prediction 2ae3deb0-a34f-48de-8e4e-7d9f660879b8 completed: Breast Cancer (confidence: 99.98%)
+2025-07-04 09:49:49,445 - app.main - INFO - Shutting down FastAPI server...
+2025-07-04 09:49:54,242 - app.main - INFO - Starting up FastAPI server...
+2025-07-04 09:49:54,243 - app.main - INFO - Loading model from /Volumes/KODAK/folder 02/Brest_cancer_prediction/model/fine_tuning_model/breast_cancer_vit_fine_tuned_20250701_100324/best_model.pth
+2025-07-04 09:50:06,367 - app.main - INFO - Successfully loaded checkpoint
+2025-07-04 09:50:06,368 - app.main - INFO - Checkpoint type: ViTForImageClassification
+2025-07-04 09:50:06,368 - app.main - INFO - Detected direct model object
+2025-07-04 09:50:06,372 - app.main - INFO - Model loaded successfully and moved to cpu
+2025-07-04 09:50:06,372 - app.main - INFO - Model type: ViTForImageClassification
+2025-07-04 09:50:06,372 - app.main - INFO - Class mapping: ['Normal', 'Breast Cancer']
+2025-07-04 09:50:06,372 - app.main - INFO - FastAPI server started successfully
+2025-07-04 09:50:32,027 - app.main - INFO - Processing prediction 9857c488-12d3-4edb-956a-fd7f66993b81 for file normal_062.png
+2025-07-04 09:50:32,318 - app.main - INFO - Debug info: {'raw_logits': [-4.560222625732422, 3.893820285797119], 'probabilities': [0.00021299210493452847, 0.9997870326042175], 'predicted_class_idx': 1, 'class_names': ['Normal', 'Breast Cancer'], 'class_mapping_verified': False}
+2025-07-04 09:50:32,325 - app.main - INFO - Prediction 9857c488-12d3-4edb-956a-fd7f66993b81 completed: Breast Cancer (confidence: 99.98%)
+2025-07-04 09:50:48,543 - app.main - INFO - Processing prediction 23e4eb8d-6b58-45c0-91b8-e1e7ed3e5bf2 for file normal_059.png
+2025-07-04 09:50:48,616 - app.main - INFO - Debug info: {'raw_logits': [-0.686947226524353, 1.3767452239990234], 'probabilities': [0.11267612129449844, 0.8873238563537598], 'predicted_class_idx': 1, 'class_names': ['Normal', 'Breast Cancer'], 'class_mapping_verified': False}
+2025-07-04 09:50:48,619 - app.main - INFO - Prediction 23e4eb8d-6b58-45c0-91b8-e1e7ed3e5bf2 completed: Breast Cancer (confidence: 88.73%)
+2025-07-04 09:51:06,542 - app.main - INFO - Processing prediction 33433be3-ca52-427a-a06c-dce92f2b5134 for file normal_062.png
+2025-07-04 09:51:06,696 - app.main - INFO - Debug info: {'raw_logits': [-4.560222625732422, 3.893820285797119], 'probabilities': [0.00021299210493452847, 0.9997870326042175], 'predicted_class_idx': 1, 'class_names': ['Normal', 'Breast Cancer'], 'class_mapping_verified': False}
+2025-07-04 09:51:06,696 - app.main - WARNING - Class mapping not verified from checkpoint. If predictions seem inverted, the model may have been trained with different class ordering.
+2025-07-04 09:51:06,698 - app.main - INFO - Prediction 33433be3-ca52-427a-a06c-dce92f2b5134 completed: Breast Cancer (confidence: 99.98%)
+2025-07-04 09:52:22,025 - app.main - INFO - Debug info: {'raw_logits': [4.956209182739258, -6.133609771728516], 'probabilities': [0.9999847412109375, 1.5266736227204092e-05], 'predicted_class_idx': 0, 'class_names': ['Normal', 'Breast Cancer'], 'class_mapping_verified': False}
+2025-07-04 09:52:22,026 - app.main - WARNING - Class mapping not verified from checkpoint. If predictions seem inverted, the model may have been trained with different class ordering.
+2025-07-04 09:52:22,093 - app.main - INFO - Debug info: {'raw_logits': [-4.067409038543701, 6.434365272521973], 'probabilities': [2.7486890758154914e-05, 0.9999724626541138], 'predicted_class_idx': 1, 'class_names': ['Normal', 'Breast Cancer'], 'class_mapping_verified': False}
+2025-07-04 09:52:22,093 - app.main - WARNING - Class mapping not verified from checkpoint. If predictions seem inverted, the model may have been trained with different class ordering.
+2025-07-04 09:52:22,093 - app.main - INFO - Known cancer image predicted as: Normal (confidence: 100.00%)
+2025-07-04 09:52:22,093 - app.main - INFO - Known normal image predicted as: Breast Cancer (confidence: 100.00%)
+2025-07-04 09:52:22,093 - app.main - WARNING - Class mapping appears to be inverted!
+2025-07-04 09:52:22,093 - app.main - INFO - Flipped class mapping to: ['Breast Cancer', 'Normal']
+2025-07-04 09:52:42,763 - app.main - INFO - Processing prediction 945994cb-c5d8-4162-bc56-abd9c5194801 for file normal_054.png
+2025-07-04 09:52:42,853 - app.main - INFO - Debug info: {'raw_logits': [-4.067409038543701, 6.434365272521973], 'probabilities': [2.7486890758154914e-05, 0.9999724626541138], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:52:42,854 - app.main - INFO - Prediction 945994cb-c5d8-4162-bc56-abd9c5194801 completed: Normal (confidence: 100.00%)
+2025-07-04 09:52:51,875 - app.main - INFO - Processing prediction cbc12c37-d09b-4d9a-be59-57bdeba63c0a for file normal_083.png
+2025-07-04 09:52:51,952 - app.main - INFO - Debug info: {'raw_logits': [-5.479659557342529, 5.813603401184082], 'probabilities': [1.2456413969630376e-05, 0.9999876022338867], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:52:51,954 - app.main - INFO - Prediction cbc12c37-d09b-4d9a-be59-57bdeba63c0a completed: Normal (confidence: 100.00%)
+2025-07-04 09:52:59,599 - app.main - INFO - Processing prediction 58909379-7d9f-404e-92b3-45b0b5780e9d for file cancer_125.png
+2025-07-04 09:52:59,756 - app.main - INFO - Debug info: {'raw_logits': [4.027225971221924, -5.769308090209961], 'probabilities': [0.9999443292617798, 5.5641052313148975e-05], 'predicted_class_idx': 0, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:52:59,758 - app.main - INFO - Prediction 58909379-7d9f-404e-92b3-45b0b5780e9d completed: Breast Cancer (confidence: 99.99%)
+2025-07-04 09:53:06,860 - app.main - INFO - Processing prediction a234a5aa-8de3-4793-be29-91e479ee32fd for file cancer_193.png
+2025-07-04 09:53:06,950 - app.main - INFO - Debug info: {'raw_logits': [2.2527570724487305, -2.811488628387451], 'probabilities': [0.9937210083007812, 0.006279000546783209], 'predicted_class_idx': 0, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:53:06,951 - app.main - INFO - Prediction a234a5aa-8de3-4793-be29-91e479ee32fd completed: Breast Cancer (confidence: 99.37%)
+2025-07-04 09:53:20,375 - app.main - INFO - Processing prediction 2fe8bd3e-3efe-48b6-9d17-6400131bfaf7 for file cancer_938.png
+2025-07-04 09:53:20,458 - app.main - INFO - Debug info: {'raw_logits': [3.191122055053711, -5.252708911895752], 'probabilities': [0.9997848868370056, 0.00021517784625757486], 'predicted_class_idx': 0, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:53:20,463 - app.main - INFO - Prediction 2fe8bd3e-3efe-48b6-9d17-6400131bfaf7 completed: Breast Cancer (confidence: 99.98%)
+2025-07-04 09:55:04,950 - app.main - ERROR - Error processing prediction 49f01046-5140-4c41-a5ee-4de07252d431: 400: Invalid file. Must be image file under 10MB
+2025-07-04 09:55:04,951 - app.main - ERROR - HTTP error: Prediction failed: 400: Invalid file. Must be image file under 10MB
+2025-07-04 09:55:50,679 - app.main - INFO - Processing prediction 710c0d41-608f-4ce6-b5c3-216840d475b2 for file 02-nci-vol-2553-300.jpg
+2025-07-04 09:55:51,090 - app.main - INFO - Debug info: {'raw_logits': [1.1142240762710571, -1.5333366394042969], 'probabilities': [0.9338604807853699, 0.06613952666521072], 'predicted_class_idx': 0, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:55:51,102 - app.main - INFO - Prediction 710c0d41-608f-4ce6-b5c3-216840d475b2 completed: Breast Cancer (confidence: 93.39%)
+2025-07-04 09:56:52,924 - app.main - INFO - Processing prediction 32a034a2-a4d6-4f96-83ff-e9239526707a for file fibroadenoma-of-the-breast-1-3000x2000.jpg
+2025-07-04 09:56:53,346 - app.main - INFO - Debug info: {'raw_logits': [-0.80420982837677, -0.6560815572738647], 'probabilities': [0.463035523891449, 0.5369645357131958], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:56:53,347 - app.main - INFO - Prediction 32a034a2-a4d6-4f96-83ff-e9239526707a completed: Normal (confidence: 53.70%)
+2025-07-04 09:57:43,275 - app.main - INFO - Processing prediction d739d618-4aad-4e42-953e-0eb8e34625e4 for file Andrejeva_figure1a.jpg
+2025-07-04 09:57:43,423 - app.main - INFO - Debug info: {'raw_logits': [-1.2954728603363037, 0.3228421211242676], 'probabilities': [0.16543740034103394, 0.8345626592636108], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:57:43,425 - app.main - INFO - Prediction d739d618-4aad-4e42-953e-0eb8e34625e4 completed: Normal (confidence: 83.46%)
+2025-07-04 09:57:53,349 - app.main - INFO - Processing prediction 192af025-75d3-424d-a571-142bfeae52e7 for file Andrejeva_figure1a.jpg
+2025-07-04 09:57:53,435 - app.main - INFO - Debug info: {'raw_logits': [-1.2954728603363037, 0.3228421211242676], 'probabilities': [0.16543740034103394, 0.8345626592636108], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:57:53,437 - app.main - INFO - Prediction 192af025-75d3-424d-a571-142bfeae52e7 completed: Normal (confidence: 83.46%)
+2025-07-04 09:58:00,836 - app.main - INFO - Processing prediction 916ccbd2-62db-4e97-b741-e0e74947220a for file 02-nci-vol-2553-300.jpg
+2025-07-04 09:58:00,935 - app.main - INFO - Debug info: {'raw_logits': [1.1142240762710571, -1.5333366394042969], 'probabilities': [0.9338604807853699, 0.06613952666521072], 'predicted_class_idx': 0, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:58:00,936 - app.main - INFO - Prediction 916ccbd2-62db-4e97-b741-e0e74947220a completed: Breast Cancer (confidence: 93.39%)
+2025-07-04 09:58:07,014 - app.main - INFO - Processing prediction 27d0f4a1-0fcb-41ac-8cf4-f6b4ef2b954c for file Andrejeva_figure1a.jpg
+2025-07-04 09:58:07,117 - app.main - INFO - Debug info: {'raw_logits': [-1.2954728603363037, 0.3228421211242676], 'probabilities': [0.16543740034103394, 0.8345626592636108], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:58:07,118 - app.main - INFO - Prediction 27d0f4a1-0fcb-41ac-8cf4-f6b4ef2b954c completed: Normal (confidence: 83.46%)
+2025-07-04 09:58:31,961 - app.main - INFO - Processing prediction f15cb79b-7044-4eed-843b-6e6c457f373c for file 1678094859654.png
+2025-07-04 09:58:32,102 - app.main - INFO - Debug info: {'raw_logits': [-3.1156697273254395, 1.3309245109558105], 'probabilities': [0.011582678183913231, 0.9884173274040222], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:58:32,103 - app.main - INFO - Prediction f15cb79b-7044-4eed-843b-6e6c457f373c completed: Normal (confidence: 98.84%)
+2025-07-04 09:58:33,405 - app.main - INFO - Processing prediction 7b00f9de-3418-4e06-87a1-b4e4549ac9c9 for file 1678094859654.png
+2025-07-04 09:58:33,486 - app.main - INFO - Debug info: {'raw_logits': [-3.1156697273254395, 1.3309245109558105], 'probabilities': [0.011582678183913231, 0.9884173274040222], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:58:33,487 - app.main - INFO - Prediction 7b00f9de-3418-4e06-87a1-b4e4549ac9c9 completed: Normal (confidence: 98.84%)
+2025-07-04 09:58:33,604 - app.main - INFO - Processing prediction 9364effc-832c-4e5b-9f2c-df298a9a647d for file 1678094859654.png
+2025-07-04 09:58:33,686 - app.main - INFO - Debug info: {'raw_logits': [-3.1156697273254395, 1.3309245109558105], 'probabilities': [0.011582678183913231, 0.9884173274040222], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:58:33,687 - app.main - INFO - Prediction 9364effc-832c-4e5b-9f2c-df298a9a647d completed: Normal (confidence: 98.84%)
+2025-07-04 09:58:33,772 - app.main - INFO - Processing prediction f1f91ec4-26fd-4c05-8e33-ed6c54fa6704 for file 1678094859654.png
+2025-07-04 09:58:33,853 - app.main - INFO - Debug info: {'raw_logits': [-3.1156697273254395, 1.3309245109558105], 'probabilities': [0.011582678183913231, 0.9884173274040222], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:58:33,854 - app.main - INFO - Prediction f1f91ec4-26fd-4c05-8e33-ed6c54fa6704 completed: Normal (confidence: 98.84%)
+2025-07-04 09:58:33,931 - app.main - INFO - Processing prediction 708db826-e3c5-4413-9d13-f03231bc9469 for file 1678094859654.png
+2025-07-04 09:58:34,013 - app.main - INFO - Debug info: {'raw_logits': [-3.1156697273254395, 1.3309245109558105], 'probabilities': [0.011582678183913231, 0.9884173274040222], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:58:34,014 - app.main - INFO - Prediction 708db826-e3c5-4413-9d13-f03231bc9469 completed: Normal (confidence: 98.84%)
+2025-07-04 09:58:34,115 - app.main - INFO - Processing prediction 4802e4f5-b1e2-48f6-8434-ca67b9c9e8a7 for file 1678094859654.png
+2025-07-04 09:58:34,200 - app.main - INFO - Debug info: {'raw_logits': [-3.1156697273254395, 1.3309245109558105], 'probabilities': [0.011582678183913231, 0.9884173274040222], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:58:34,202 - app.main - INFO - Prediction 4802e4f5-b1e2-48f6-8434-ca67b9c9e8a7 completed: Normal (confidence: 98.84%)
+2025-07-04 09:58:34,278 - app.main - INFO - Processing prediction 37b26ad1-5143-45dd-a429-701d23a6205d for file 1678094859654.png
+2025-07-04 09:58:34,359 - app.main - INFO - Debug info: {'raw_logits': [-3.1156697273254395, 1.3309245109558105], 'probabilities': [0.011582678183913231, 0.9884173274040222], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:58:34,363 - app.main - INFO - Prediction 37b26ad1-5143-45dd-a429-701d23a6205d completed: Normal (confidence: 98.84%)
+2025-07-04 09:58:34,445 - app.main - INFO - Processing prediction b56411d5-3636-4c1f-8ce9-883017c2fa8a for file 1678094859654.png
+2025-07-04 09:58:34,524 - app.main - INFO - Debug info: {'raw_logits': [-3.1156697273254395, 1.3309245109558105], 'probabilities': [0.011582678183913231, 0.9884173274040222], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:58:34,527 - app.main - INFO - Prediction b56411d5-3636-4c1f-8ce9-883017c2fa8a completed: Normal (confidence: 98.84%)
+2025-07-04 09:58:34,627 - app.main - INFO - Processing prediction c84e0948-6158-407d-89ad-9a55187dba20 for file 1678094859654.png
+2025-07-04 09:58:34,712 - app.main - INFO - Debug info: {'raw_logits': [-3.1156697273254395, 1.3309245109558105], 'probabilities': [0.011582678183913231, 0.9884173274040222], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:58:34,715 - app.main - INFO - Prediction c84e0948-6158-407d-89ad-9a55187dba20 completed: Normal (confidence: 98.84%)
+2025-07-04 09:58:34,780 - app.main - INFO - Processing prediction f05289ff-ac9d-4cae-882b-ac6436241fed for file 1678094859654.png
+2025-07-04 09:58:34,859 - app.main - INFO - Debug info: {'raw_logits': [-3.1156697273254395, 1.3309245109558105], 'probabilities': [0.011582678183913231, 0.9884173274040222], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:58:34,862 - app.main - INFO - Prediction f05289ff-ac9d-4cae-882b-ac6436241fed completed: Normal (confidence: 98.84%)
+2025-07-04 09:59:15,809 - app.main - INFO - Processing prediction 530dce0c-9940-44b8-93f6-baf44581a91e for file images.jpeg
+2025-07-04 09:59:15,944 - app.main - INFO - Debug info: {'raw_logits': [-1.2860106229782104, 0.07555493712425232], 'probabilities': [0.20398597419261932, 0.7960140705108643], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:59:15,946 - app.main - INFO - Prediction 530dce0c-9940-44b8-93f6-baf44581a91e completed: Normal (confidence: 79.60%)
+2025-07-04 09:59:20,114 - app.main - INFO - Processing prediction 10ed9301-b25b-4bdd-8278-5d686ebaedac for file images.jpeg
+2025-07-04 09:59:20,202 - app.main - INFO - Debug info: {'raw_logits': [-1.2860106229782104, 0.07555493712425232], 'probabilities': [0.20398597419261932, 0.7960140705108643], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 09:59:20,205 - app.main - INFO - Prediction 10ed9301-b25b-4bdd-8278-5d686ebaedac completed: Normal (confidence: 79.60%)
+2025-07-04 10:01:53,054 - app.main - INFO - Processing prediction 37e9fef1-dc62-472d-8002-8382e33fa813 for file 1678094859654.png
+2025-07-04 10:01:53,224 - app.main - INFO - Debug info: {'raw_logits': [-3.1156697273254395, 1.3309245109558105], 'probabilities': [0.011582678183913231, 0.9884173274040222], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 10:01:53,241 - app.main - INFO - Prediction 37e9fef1-dc62-472d-8002-8382e33fa813 completed: Normal (confidence: 98.84%)
+2025-07-04 10:04:42,266 - app.main - INFO - Processing prediction 90509759-3fce-459d-9c5d-e97d004dae0e for file Andrejeva_figure1a.jpg
+2025-07-04 10:04:42,684 - app.main - INFO - Debug info: {'raw_logits': [-1.2954728603363037, 0.3228421211242676], 'probabilities': [0.16543740034103394, 0.8345626592636108], 'predicted_class_idx': 1, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 10:04:42,699 - app.main - INFO - Prediction 90509759-3fce-459d-9c5d-e97d004dae0e completed: Normal (confidence: 83.46%)
+2025-07-04 10:05:19,703 - app.main - INFO - Processing prediction 22c21cef-1446-43b4-808e-52797d6198bf for file radiol.jpg
+2025-07-04 10:05:19,888 - app.main - INFO - Debug info: {'raw_logits': [2.791769504547119, -1.748651385307312], 'probabilities': [0.9894437789916992, 0.010556290857493877], 'predicted_class_idx': 0, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 10:05:19,897 - app.main - INFO - Prediction 22c21cef-1446-43b4-808e-52797d6198bf completed: Breast Cancer (confidence: 98.94%)
+2025-07-04 10:06:29,194 - app.main - INFO - Processing prediction cc29fba5-e8ca-4512-9d7d-8b4507deecc5 for file iery_a_11221037_f0001_b.jpg
+2025-07-04 10:06:29,350 - app.main - INFO - Debug info: {'raw_logits': [3.3825325965881348, -5.216826915740967], 'probabilities': [0.9998158812522888, 0.0001841898338170722], 'predicted_class_idx': 0, 'class_names': ['Breast Cancer', 'Normal'], 'class_mapping_verified': False}
+2025-07-04 10:06:29,359 - app.main - INFO - Prediction cc29fba5-e8ca-4512-9d7d-8b4507deecc5 completed: Breast Cancer (confidence: 99.98%)

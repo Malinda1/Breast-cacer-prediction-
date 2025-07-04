@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer AI Prediction System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .upload-section, .results-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .upload-section h2, .results-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .upload-area {
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-area:hover {
+            border-color: #764ba2;
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .upload-area.dragover {
+            border-color: #28a745;
+            background: rgba(40, 167, 69, 0.1);
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .upload-text {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .preview-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .results-container {
+            display: none;
+        }
+
+        .prediction-result {
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .prediction-normal {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+        }
+
+        .prediction-cancer {
+            background: linear-gradient(45deg, #dc3545, #fd7e14);
+            color: white;
+        }
+
+        .prediction-result h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .confidence-bar {
+            background: rgba(255,255,255,0.3);
+            border-radius: 10px;
+            height: 20px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: rgba(255,255,255,0.8);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .recommendations {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .recommendations h4 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recommendations li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+            color: #666;
+        }
+
+        .recommendations li:last-child {
+            border-bottom: none;
+        }
+
+        .recommendations li::before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .risk-level {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .risk-low { background: #d4edda; color: #155724; }
+        .risk-medium { background: #fff3cd; color: #856404; }
+        .risk-high { background: #f8d7da; color: #721c24; }
+
+        .disclaimer {
+            background: #e9ecef;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            color: #495057;
+        }
+
+        .status-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: white;
+            font-weight: bold;
+            z-index: 1000;
+            display: none;
+        }
+
+        .status-online {
+            background: #28a745;
+        }
+
+        .status-offline {
+            background: #dc3545;
+        }
+
+        .history-section {
+            grid-column: 1 / -1;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            transition: background 0.3s ease;
+        }
+
+        .history-item:hover {
+            background: #f8f9fa;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .upload-section, .results-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-microscope"></i> Breast Cancer AI Prediction System</h1>
+            <p>Professional AI-powered breast cancer screening from medical images</p>
+        </div>
+
+        <div class="status-indicator" id="statusIndicator"></div>
+
+        <div class="main-content">
+            <div class="upload-section">
+                <h2><i class="fas fa-upload"></i> Upload Medical Image</h2>
+                
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <div class="upload-text">
+                        <strong>Click to upload</strong> or drag and drop<br>
+                        <small>Supported formats: JPG, PNG, TIFF, BMP (Max 10MB)</small>
+                    </div>
+                    <input type="file" class="file-input" id="fileInput" accept=".jpg,.jpeg,.png,.tiff,.bmp">
+                </div>
+
+                <div class="preview-container" id="previewContainer"></div>
+
+                <div class="form-group">
+                    <label for="patientId">Patient ID (Optional)</label>
+                    <input type="text" id="patientId" placeholder="Enter patient identifier">
+                </div>
+
+                <div class="form-group">
+                    <label for="debugMode">Debug Mode</label>
+                    <select id="debugMode">
+                        <option value="false">Disabled</option>
+                        <option value="true">Enabled</option>
+                    </select>
+                </div>
+
+                <button class="btn" id="predictBtn" disabled>
+                    <i class="fas fa-brain"></i> Analyze Image
+                </button>
+
+                <div class="loading" id="loadingDiv">
+                    <div class="loading-spinner"></div>
+                    <p>Analyzing image with AI...</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <h2><i class="fas fa-chart-line"></i> Analysis Results</h2>
+                
+                <div class="results-container" id="resultsContainer">
+                    <!-- Results will be populated here -->
+                </div>
+
+                <div style="text-align: center; color: #666; padding: 50px 0;" id="noResults">
+                    <i class="fas fa-chart-bar" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.3;"></i>
+                    <p>Upload an image to see analysis results</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="history-section" id="historySection" style="display: none;">
+            <h2><i class="fas fa-history"></i> Recent Predictions</h2>
+            <div id="historyList"></div>
+        </div>
+    </div>
+
+    <script>
+        class BreastCancerPredictor {
+            constructor() {
+                this.apiUrl = 'http://localhost:8000';
+                this.currentFile = null;
+                this.predictionHistory = JSON.parse(localStorage.getItem('predictionHistory') || '[]');
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.checkServerStatus();
+                this.loadHistory();
+                // Check server status every 30 seconds
+                setInterval(() => this.checkServerStatus(), 30000);
+            }
+
+            setupEventListeners() {
+                const uploadArea = document.getElementById('uploadArea');
+                const fileInput = document.getElementById('fileInput');
+                const predictBtn = document.getElementById('predictBtn');
+
+                // File upload events
+                uploadArea.addEventListener('click', () => fileInput.click());
+                fileInput.addEventListener('change', (e) => this.handleFileSelect(e.target.files[0]));
+
+                // Drag and drop events
+                uploadArea.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    uploadArea.classList.add('dragover');
+                });
+
+                uploadArea.addEventListener('dragleave', () => {
+                    uploadArea.classList.remove('dragover');
+                });
+
+                uploadArea.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    uploadArea.classList.remove('dragover');
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        this.handleFileSelect(files[0]);
+                    }
+                });
+
+                // Predict button
+                predictBtn.addEventListener('click', () => this.predict());
+            }
+
+            async checkServerStatus() {
+                try {
+                    const response = await fetch(`${this.apiUrl}/health`);
+                    if (response.ok) {
+                        this.showStatus('Server Online', 'online');
+                    } else {
+                        this.showStatus('Server Error', 'offline');
+                    }
+                } catch (error) {
+                    this.showStatus('Server Offline', 'offline');
+                }
+            }
+
+            showStatus(message, type) {
+                const indicator = document.getElementById('statusIndicator');
+                indicator.textContent = message;
+                indicator.className = `status-indicator status-${type}`;
+                indicator.style.display = 'block';
+                
+                setTimeout(() => {
+                    indicator.style.display = 'none';
+                }, 3000);
+            }
+
+            validateFile(file) {
+                const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/bmp', 'image/tiff'];
+                const maxSize = 10 * 1024 * 1024; // 10MB
+
+                if (!allowedTypes.includes(file.type)) {
+                    alert('Please upload a valid image file (JPG, PNG, TIFF, or BMP)');
+                    return false;
+                }
+
+                if (file.size > maxSize) {
+                    alert('File size must be less than 10MB');
+                    return false;
+                }
+
+                return true;
+            }
+
+            handleFileSelect(file) {
+                if (!file || !this.validateFile(file)) {
+                    return;
+                }
+
+                this.currentFile = file;
+                this.showPreview(file);
+                document.getElementById('predictBtn').disabled = false;
+            }
+
+            showPreview(file) {
+                const previewContainer = document.getElementById('previewContainer');
+                const reader = new FileReader();
+
+                reader.onload = (e) => {
+                    previewContainer.innerHTML = `
+                        <img src="${e.target.result}" alt="Preview" class="preview-image">
+                        <p style="margin-top: 10px; color: #666;">
+                            <strong>${file.name}</strong> (${(file.size / 1024 / 1024).toFixed(2)} MB)
+                        </p>
+                    `;
+                };
+
+                reader.readAsDataURL(file);
+            }
+
+            async predict() {
+                if (!this.currentFile) {
+                    alert('Please select an image first');
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('file', this.currentFile);
+                
+                const patientId = document.getElementById('patientId').value;
+                if (patientId) {
+                    formData.append('patient_id', patientId);
+                }
+
+                const debugMode = document.getElementById('debugMode').value === 'true';
+                formData.append('debug_mode', debugMode);
+
+                this.showLoading(true);
+                this.simulateProgress();
+
+                try {
+                    const response = await fetch(`${this.apiUrl}/predict`, {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    this.showResults(result);
+                    this.addToHistory(result);
+                    
+                } catch (error) {
+                    console.error('Prediction error:', error);
+                    alert('Error during prediction. Please check if the server is running and try again.');
+                } finally {
+                    this.showLoading(false);
+                }
+            }
+
+            simulateProgress() {
+                const progressFill = document.getElementById('progressFill');
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 15;
+                    if (progress > 90) progress = 90;
+                    progressFill.style.width = progress + '%';
+                }, 200);
+
+                // Store interval ID to clear it later
+                this.progressInterval = interval;
+            }
+
+            showLoading(show) {
+                const loadingDiv = document.getElementById('loadingDiv');
+                const predictBtn = document.getElementById('predictBtn');
+                const progressFill = document.getElementById('progressFill');
+
+                if (show) {
+                    loadingDiv.style.display = 'block';
+                    predictBtn.disabled = true;
+                    progressFill.style.width = '0%';
+                } else {
+                    loadingDiv.style.display = 'none';
+                    predictBtn.disabled = false;
+                    progressFill.style.width = '100%';
+                    
+                    // Clear progress interval
+                    if (this.progressInterval) {
+                        clearInterval(this.progressInterval);
+                    }
+                    
+                    // Reset progress after a delay
+                    setTimeout(() => {
+                        progressFill.style.width = '0%';
+                    }, 1000);
+                }
+            }
+
+            showResults(result) {
+                const resultsContainer = document.getElementById('resultsContainer');
+                const noResults = document.getElementById('noResults');
+                
+                noResults.style.display = 'none';
+                resultsContainer.style.display = 'block';
+
+                const isNormal = result.prediction.toLowerCase() === 'normal';
+                const predictionClass = isNormal ? 'prediction-normal' : 'prediction-cancer';
+                const riskClass = this.getRiskClass(result.risk_level);
+
+                resultsContainer.innerHTML = `
+                    <div class="prediction-result ${predictionClass}">
+                        <h3>
+                            <i class="fas ${isNormal ? 'fa-check-circle' : 'fa-exclamation-triangle'}"></i>
+                            ${result.prediction}
+                        </h3>
+                        <p>Confidence: ${(result.confidence * 100).toFixed(1)}%</p>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" style="width: ${result.confidence * 100}%"></div>
+                        </div>
+                        <span class="risk-level ${riskClass}">
+                            Risk Level: ${result.risk_level}
+                        </span>
+                    </div>
+
+                    <div class="recommendations">
+                        <h4><i class="fas fa-clipboard-list"></i> Recommendations</h4>
+                        <div class="recommendation-item">
+                            <strong>Immediate Action:</strong><br>
+                            ${result.recommendations.immediate_action}
+                        </div>
+                        <div class="recommendation-item" style="margin-top: 15px;">
+                            <strong>Follow-up:</strong><br>
+                            ${result.recommendations.follow_up}
+                        </div>
+                        ${this.renderAdditionalRecommendations(result.recommendations)}
+                    </div>
+
+                    <div class="disclaimer">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Important:</strong> ${result.recommendations.disclaimer}
+                    </div>
+
+                    ${result.debug_info ? this.renderDebugInfo(result.debug_info) : ''}
+                `;
+            }
+
+            renderAdditionalRecommendations(recommendations) {
+                let html = '';
+                
+                if (recommendations.lifestyle) {
+                    html += `
+                        <div class="recommendation-item" style="margin-top: 15px;">
+                            <strong>Lifestyle Recommendations:</strong>
+                            <ul>
+                                ${recommendations.lifestyle.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                if (recommendations.required_tests) {
+                    html += `
+                        <div class="recommendation-item" style="margin-top: 15px;">
+                            <strong>Required Tests:</strong>
+                            <ul>
+                                ${recommendations.required_tests.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                if (recommendations.support_resources) {
+                    html += `
+                        <div class="recommendation-item" style="margin-top: 15px;">
+                            <strong>Support Resources:</strong>
+                            <ul>
+                                ${recommendations.support_resources.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                }
+
+                return html;
+            }
+
+            renderDebugInfo(debugInfo) {
+                return `
+                    <div class="recommendations" style="margin-top: 20px;">
+                        <h4><i class="fas fa-bug"></i> Debug Information</h4>
+                        <div style="font-family: monospace; background: #f8f9fa; padding: 10px; border-radius: 5px; font-size: 0.9rem;">
+                            <div>Class Names: ${JSON.stringify(debugInfo.class_names)}</div>
+                            <div>Predicted Class Index: ${debugInfo.predicted_class_idx}</div>
+                            <div>Probabilities: ${JSON.stringify(debugInfo.probabilities.map(p => p.toFixed(4)))}</div>
+                            <div>Class Mapping Verified: ${debugInfo.class_mapping_verified}</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            getRiskClass(riskLevel) {
+                const level = riskLevel.toLowerCase();
+                if (level.includes('low')) return 'risk-low';
+                if (level.includes('medium') || level.includes('high')) return 'risk-medium';
+                if (level.includes('high')) return 'risk-high';
+                return 'risk-low';
+            }
+
+            addToHistory(result) {
+                const historyItem = {
+                    id: result.prediction_id,
+                    timestamp: result.timestamp,
+                    prediction: result.prediction,
+                    confidence: result.confidence,
+                    risk_level: result.risk_level,
+                    patient_id: result.patient_id,
+                    processing_time: result.processing_time
+                };
+
+                this.predictionHistory.unshift(historyItem);
+                this.predictionHistory = this.predictionHistory.slice(0, 10); // Keep only last 10
+                localStorage.setItem('predictionHistory', JSON.stringify(this.predictionHistory));
+                this.loadHistory();
+            }
+
+            loadHistory() {
+                const historySection = document.getElementById('historySection');
+                const historyList = document.getElementById('historyList');
+
+                if (this.predictionHistory.length === 0) {
+                    historySection.style.display = 'none';
+                    return;
+                }
+
+                historySection.style.display = 'block';
+                historyList.innerHTML = this.predictionHistory.map(item => `
+                    <div class="history-item">
+                        <div>
+                            <strong>${item.prediction}</strong>
+                            <small style="color: #666; margin-left: 10px;">
+                                ${new Date(item.timestamp).toLocaleString()}
+                            </small>
+                            ${item.patient_id ? `<br><small>Patient: ${item.patient_id}</small>` : ''}
+                        </div>
+                        <div style="text-align: right;">
+                            <div>${(item.confidence * 100).toFixed(1)}%</div>
+                            <small style="color: #666;">${item.processing_time.toFixed(2)}s</small>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', () => {
+            new BreastCancerPredictor();
+        });
+    </script>
+</body>
+</html>
